@@ -33,3 +33,7 @@ AC Rails 購物車 App 練習。
 - Customer 可以取消尚未出貨的訂單
 ## Phase 4: 線上支付
 - Customer 可以在線上刷卡支付（整合智付通金流服務)
+
+---
+## 購物車 ERD
+![](https://i.loli.net/2018/05/21/5b02a444c8d9c.png)
