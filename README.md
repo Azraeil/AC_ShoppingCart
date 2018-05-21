@@ -1,4 +1,4 @@
-AlphaCamp 購物車教材練習。
+AC Rails 購物車 App 練習。
 
 ---
 # 購物車 User Stories
