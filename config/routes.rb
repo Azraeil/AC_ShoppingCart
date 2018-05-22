@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # Phase 1：商品展示
   resources :users, only: [:edit, :update, :show]
 
-  resources :products
+  resources :products, only: [:index, :show]
 
   root "products#index"
 
