@@ -52,3 +52,29 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# for user login
+gem 'devise'
+
+# Use sprockets
+gem 'sprockets-rails'
+# Use Bootstrap for beautiful view
+gem 'bootstrap', '~> 4.0.0'
+# Use jquery for bootstrap javascript
+gem 'jquery-rails'
+
+# ‘unirest’ is dependency of ‘filestack-rails’. You need to specify it in Gemfile. Otherwise, ‘filestack-rails’ will automatically install a insecure old version.
+gem "unirest", git: "https://github.com/Kong/unirest-ruby"
+gem 'filestack-rails', '~> 3.1'
+
+# for fake data
+gem 'ffaker'
+
+# for paginate
+gem 'kaminari'
+
+# for sort and query
+gem 'ransack'
+
+# for icons
+gem "font-awesome-rails"
