@@ -36,4 +36,4 @@ AC Rails 購物車 App 練習。
 
 ---
 ## 購物車 ERD
-![](https://i.loli.net/2018/05/22/5b03b506c90f9.png)
+![](https://i.loli.net/2018/05/22/5b03b9803476f.png)
