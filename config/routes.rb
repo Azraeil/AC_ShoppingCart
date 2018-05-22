@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # Phase 1：商品展示
   resources :users, only: [:edit, :update, :show]
 
