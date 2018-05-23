@@ -1,4 +1,4 @@
-class Quisveniam::ProductsController < ApplicationController
+class Quisveniam::ProductsController < Quisveniam::BaseController
   def index
     @products = Product.all
   end
