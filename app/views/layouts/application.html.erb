@@ -20,7 +20,11 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <% if current_user %>
-            <span class="navbar-text"><%= current_user.email %></span>
+            <span class="navbar-text">Hi, <%= current_user.email %></span>
+
+            <% if current_user.is_admin? %>
+              <li class="nav-item"><%= link_to('Admin', quisveniam_root_path, class: "nav-link") %></li>
+            <% end %>
 
             <li class="nav-item"><%= link_to('Cart#dev', root_path, class: "nav-link") %></li>
 
