@@ -1,0 +1,2 @@
+module Quisveniam::ProductsHelper
+end
