@@ -21,6 +21,7 @@ namespace :dev do
       product = Product.new(
         name: FFaker::Book::title,
         description: FFaker::Book::description,
+        price: rand(1..10) * 10,
         image: FFaker::Book.unique.cover
       )
 
