@@ -4,12 +4,14 @@
       <div class="row">
         <% @products.each do |product| %>
         <div class="card col-3" style="width: 18rem;">
-          <%= image_tag product.image, class:"img-fluid rounded mx-auto d-block" if product.image && product.image != "" %>
-          <div class="card-body">
-            <h5 class="card-title"><%= product.name %></h5>
-            <h6>$<%= product.price %></h6>
-            <a href="#" class="btn btn-primary">Add to Cart</a>
-          </div>
+          <%= link_to product_path(product.id), class:"text-dark" do %>
+            <%= image_tag product.image, class:"img-fluid rounded mx-auto d-block" if product.image && product.image != "" %>
+            <div class="card-body">
+              <h5 class="card-title"><%= product.name %></h5>
+              <h6>$<%= product.price %></h6>
+              <a href="#" class="btn btn-primary">Add to Cart</a>
+            </div>
+          <% end %>
         </div>
         <% end %>
       </div>
@@ -19,13 +21,7 @@
     </div>
 
     <div class="col-3">
-      <h5>Cart</h5>
-      <hr>
-
-      <hr>
-      <h5>SUBTOTAL     $</h5>
-
-      <a href="#" class="btn btn-primary">View Cart</a>
+      <%= render partial: "shared/cart" %>
     </div>
   </div>
   <div class="row">
