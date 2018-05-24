@@ -17,15 +17,15 @@
     <tbody>
       <% @products.each do |product| %>
         <tr>
-          <th><%= product.name %></th>
-          <td><%= image_tag product.image, size: "60" if product.image && product.image != ""%></td>
-          <td>$<%= product.price %></td>
-          <td>
+          <th class="align-middle"><%= product.name %></th>
+          <td class="align-middle"><%= image_tag product.image, size: "60" if product.image && product.image != ""%></td>
+          <td class="align-middle">$<%= product.price %></td>
+          <td class="align-middle">
             <%= link_to edit_quisveniam_product_path(product.id), class: "btn btn-primary" do %>
               <%= fa_icon "edit" %>
             <% end %>
           </td>
-          <td>
+          <td class="align-middle">
             <%= link_to quisveniam_product_path(product.id), method: :delete, data:{ confirm: "Are you sure to delete this product #{product.name}?" }, class: "btn btn-danger" do %>
               <%= fa_icon "trash" %>
             <% end %>
