@@ -8,12 +8,11 @@ Rails.application.routes.draw do
   root "products#index"
 
   namespace :quisveniam do
-    resources :products
+    resources :products, except: [:show]
     root "products#index"
   end
 
   # Phase 2：商品與購物車 carts
   # Phase 3：成立訂單 orders
   # Phase 4：線上支付 payments
-
 end

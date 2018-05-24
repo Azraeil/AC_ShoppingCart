@@ -20,8 +20,7 @@
       <% @products.each do |product| %>
         <tr>
           <th><%= product.name %></th>
-          <td>
-          <%= image_tag product.image, size: "60" %></td>
+          <td><%= image_tag product.image, size: "60" %></td>
           <td>$<%= product.price %></td>
           <td><%= fa_icon "edit" %>#dev</td>
           <td><%= fa_icon "trash" %>#dev</td>
