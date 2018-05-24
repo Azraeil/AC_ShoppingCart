@@ -1,0 +1,46 @@
+<div class="container">
+  <% if current_page?(new_quisveniam_product_path) %>
+    <h2>Create Product</h2>
+  <% else %>
+    <h2>Edit Product</h2>
+  <% end %>
+
+  <% if @product.errors.any? %>
+    <%= @product.errors.full_messages.to_sentence %>
+  <% end %>
+
+  <%= form_for [:quisveniam, @product] do |f| %>
+    <div class="form-group">
+      <%= f.label :name, "Product Name" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :image, "Product Image" %>
+      <%= image_tag @product.image, size: "60" if @product.image && @product.image != "" %>
+      <%= f.filestack_field :image, '請選擇商品圖片',
+      pickerOptions: {
+        accept: 'image/*',
+        fromSources: ['local_file_system', 'url'],
+        maxFiles: 1,
+        maxSize: 10240000
+        } %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description, "Product Description" %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :price, "Product Price" %>
+      <%= f.text_field :price, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit "Submit" , class: "btn btn-primary btn-sm" %>
+      <%= link_to "Cancel", quisveniam_products_path, class: "btn btn-light btn-sm" %>
+    </div>
+
+  <% end %>
+</div>
