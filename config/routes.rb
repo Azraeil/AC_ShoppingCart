@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   end
 
   # Phase 2：商品與購物車 carts
+  # 注意 cart 使用單數資源，carts#show URI = /cart
+  resource :cart
+  
   # Phase 3：成立訂單 orders
   # Phase 4：線上支付 payments
 end
