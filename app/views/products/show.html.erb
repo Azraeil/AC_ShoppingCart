@@ -11,7 +11,7 @@
           <%= simple_format @product.description %>
 
           <div class="align-bottom">
-            <a href="#" class="btn btn-primary">Add to Cart</a>
+            <%= link_to "Add To Cart", add_to_cart_product_path(@product.id), method: :post, class:"btn btn-primary btn-sm" %>
           </div>
         </div>
       </div>
@@ -20,5 +20,4 @@
       <%= render partial: "shared/cart" %>
     </div>
   </div>
-
 </div>

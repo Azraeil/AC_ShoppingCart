@@ -25,4 +25,28 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  # 讓我們可以在 View 呼叫 current_cart
+  helper_method :current_cart
+
+  private
+  def current_cart
+    # 如果已經有 @cart 就回傳沒有的話就呼叫 set_cart 設定
+    return @cart || set_cart
+  end
+
+  def set_cart
+    if session[:cart_id]
+      # 如果在 session 中能取出 "購物車 id"，表示 server 與 client 已經交換過資訊了
+      # 因此可以在 carts table 裡找到那臺購物車的記錄
+      @cart = Cart.find_by(id: session[:cart_id])
+    end
+
+    # 確保 @cart 存在，不存在的話就建立一個
+    return @cart ||= Cart.create
+
+    # 將 "購物車 id" 存入 session 中，傳到使用者的瀏覽器 cookie 中
+    session[:cart_id] = @cart.id
+    return @cart
+  end
 end
