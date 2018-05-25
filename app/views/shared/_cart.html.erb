@@ -1,7 +1,27 @@
 <h5>Cart</h5>
 <hr>
+<% current_cart.cart_items.each do |cart_item| %>
+  <div class="cart-item">
+    <div class="card text-left">
+      <div class="row">
+        <div class="col-3 text-center">
+          <%= image_tag cart_item.product.image, size: "100" %>
+        </div>
+        <div class="col-9">
+          <div class="card-body">
+            <h5 class="card-title"><%= cart_item.product.name %></h5>
+            <p class="card-text">$<%= cart_item.product.price %></p>
+            <a href="#" class="btn btn-primary">-</a>
+            <span><%= cart_item.quantity %></span>
+            <a href="#" class="btn btn-primary">+</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
+  </div>
+<% end %>
 <hr>
-<h5>SUBTOTAL     $</h5>
+<h5>SUBTOTAL $</h5>
 
 <a href="#" class="btn btn-primary">View Cart</a>
