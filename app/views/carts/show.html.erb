@@ -1,0 +1,46 @@
+<div class="card border-light">
+  <div class="card-header">
+    <h2 class="card-title mt-1 text-info">Shopping List</h2>
+  </div>
+
+  <table class="table table-striped table-hover mt-2">
+    <thead>
+      <tr>
+        <th scope="col-md-auto">Product</th>
+        <th scope="col"></th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Subtotal</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td class="align-middle"><%= image_tag cart_item.product.image, size: "60" if cart_item.product.image && cart_item.product.image != ""%></td>
+          <th class="align-middle"><%= cart_item.product.name %></th>
+          <td class="align-middle">$<%= cart_item.product.price %></td>
+          <td class="align-middle">
+            <%= link_to "-", minus_quantity_cart_path(product_id:cart_item.product.id), method: :post, class:"btn btn-light btn-sm" %>
+            <span><%= cart_item.quantity %></span>
+            <%= link_to "+", plus_quantity_cart_path(product_id:cart_item.product.id), method: :post, class:"btn btn-light btn-sm" %>
+          </td>
+          <td class="align-middle">$<%= cart_item.product.price * cart_item.quantity %></td>
+          <td class="align-middle">
+            <%= link_to remove_product_cart_path(product_id: cart_item.product.id), method: :delete, class:"btn btn-danger btn-sm" do %>
+            <%= fa_icon "trash" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+        <th colspan="3" class="text-right">Total</th>
+        <th colspan="2">$<%= current_cart.subtotal %></th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="container">
+  <%= link_to "Checkout#dev", "#", class: "btn btn-primary" %>
+  <%= link_to "Keep Shopping", root_path, class: "btn btn-primary" %>
+</div>

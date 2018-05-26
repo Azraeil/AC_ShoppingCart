@@ -23,4 +23,8 @@ class CartsController < ApplicationController
 
     redirect_back(fallback_location: root_path)
   end
+
+  def show
+    @cart_items = current_cart.cart_items
+  end
 end
