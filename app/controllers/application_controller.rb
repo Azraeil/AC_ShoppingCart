@@ -1,9 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  # 加入認證程序，使用者需登入才能存取某些網站內容
-  before_action :authenticate_user!
-
   # 請參考 Devise 文件自訂表單後通過 Strong Parameters 的方法
   # https://github.com/plataformatec/devise#strong-parameters
   # 注意有 sign_up 和 account_update 兩種參數要處理
@@ -36,14 +33,16 @@ class ApplicationController < ActionController::Base
   end
 
   def set_cart
+    # 搜尋 session 裡 "cart_id" 欄位的值
     if session[:cart_id]
       # 如果在 session 中能取出 "購物車 id"，表示 server 與 client 已經交換過資訊了
       # 因此可以在 carts table 裡找到那臺購物車的記錄
+      puts "cart_id session exist!"
       @cart = Cart.find_by(id: session[:cart_id])
+    else
+      # 確保 @cart 存在，不存在的話就建立一個
+      @cart = Cart.create
     end
-
-    # 確保 @cart 存在，不存在的話就建立一個
-    return @cart ||= Cart.create
 
     # 將 "購物車 id" 存入 session 中，傳到使用者的瀏覽器 cookie 中
     session[:cart_id] = @cart.id
