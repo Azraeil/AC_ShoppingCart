@@ -21,9 +21,9 @@
           <th class="align-middle"><%= cart_item.product.name %></th>
           <td class="align-middle">$<%= cart_item.product.price %></td>
           <td class="align-middle">
-            <%= link_to "-", minus_quantity_cart_path(product_id:cart_item.product.id), method: :post, class:"btn btn-light btn-sm" %>
+            <%= link_to "-", adjust_quantity_cart_path(product_id:cart_item.product.id, type: "minus"), method: :post, class:"btn btn-light btn-sm" %>
             <span><%= cart_item.quantity %></span>
-            <%= link_to "+", plus_quantity_cart_path(product_id:cart_item.product.id), method: :post, class:"btn btn-light btn-sm" %>
+            <%= link_to "+", adjust_quantity_cart_path(product_id:cart_item.product.id, type: "plus"), method: :post, class:"btn btn-light btn-sm" %>
           </td>
           <td class="align-middle">$<%= cart_item.product.price * cart_item.quantity %></td>
           <td class="align-middle">
