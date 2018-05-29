@@ -26,5 +26,7 @@ Rails.application.routes.draw do
   end
 
   # Phase 3：成立訂單 orders
+  resources :orders
+
   # Phase 4：線上支付 payments
 end
