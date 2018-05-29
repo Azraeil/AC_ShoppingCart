@@ -2,6 +2,10 @@ class OrdersController < ApplicationController
   # 成立訂單時要求使用者登入，且在成立訂單後導入訂單 orders#show 頁面
   before_action :authenticate_user!
 
+  def index
+
+  end
+
   def new
     @order = Order.new
   end
@@ -10,9 +14,6 @@ class OrdersController < ApplicationController
 
   end
 
-  def index
-
-  end
 
   def show
 
