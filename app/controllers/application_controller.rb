@@ -27,6 +27,19 @@ class ApplicationController < ActionController::Base
   helper_method :current_cart
 
   private
+  # 客製化 devise 使用者登入後的頁面
+  def after_sign_in_path_for(resource)
+    # devise function for custumize your redirect hook
+    # redirect to the form if there is a order_data in the session
+    if session[:order_data].present?
+      @cart = Cart.find(session[:cart_id])
+      cart_path(@cart.id)
+    else
+      # if there is no form data in session, proceed as normal
+      super
+    end
+  end
+
   def current_cart
     # 如果已經有 @cart 就回傳沒有的話就呼叫 set_cart 設定
     return @cart || set_cart
@@ -37,7 +50,6 @@ class ApplicationController < ActionController::Base
     if session[:cart_id]
       # 如果在 session 中能取出 "購物車 id"，表示 server 與 client 已經交換過資訊了
       # 因此可以在 carts table 裡找到那臺購物車的記錄
-      puts "cart_id session exist!"
       @cart = Cart.find_by(id: session[:cart_id])
     else
       # 確保 @cart 存在，不存在的話就建立一個

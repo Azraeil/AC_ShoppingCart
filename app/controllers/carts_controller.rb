@@ -20,5 +20,11 @@ class CartsController < ApplicationController
 
   def show
     @cart_items = current_cart.cart_items
+
+    if session[:order_data].present?
+      @order = Order.new(session[:order_data])
+    else
+      @order = Order.new
+    end
   end
 end
