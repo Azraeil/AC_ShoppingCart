@@ -20,8 +20,7 @@ Rails.application.routes.draw do
   # 注意 cart 使用單數資源，carts#show URI = /cart
   resource :cart, only: [:show] do
     collection do
-      post :plus_quantity
-      post :minus_quantity
+      post :adjust_quantity
       delete :remove_product
     end
   end
