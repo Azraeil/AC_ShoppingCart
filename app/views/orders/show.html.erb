@@ -2,11 +2,22 @@
   <br>
   <div class="card">
     <div class="card-header">
-      Order#<%= @order.sn %> Status
+      #<%= @order.sn %> Order Status
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">Payment Status: <%= @order.payment_status %></li>
-      <li class="list-group-item">Shipping Status: <%= @order.shipping_status %></li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col">
+            Shipping Status: <%= @order.shipping_status %>
+          </div>
+          <div class="col text-right">
+            <% if @order.shipping_status == "not_shipped" %>
+              <%= link_to "Cancel Order", order_path(@order.id), method: :patch, class: "btn btn-danger btn-sm" %>
+            <% end %>
+          </div>
+        </div>
+      </li>
     </ul>
   </div>
 
