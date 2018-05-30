@@ -31,7 +31,7 @@
 
             <li class="nav-item"><%= link_to('Cart', cart_path, class: "nav-link") %></li>
 
-            <li class="nav-item"><%= link_to('Order#dev', root_path, class: "nav-link") %></li>
+            <li class="nav-item"><%= link_to('Order', orders_path, class: "nav-link") %></li>
             <li class="nav-item"><%= link_to('Account Setting', edit_user_registration_path, class: "nav-link") %></li>
             <li class="nav-item"><%= link_to('Log out', destroy_user_session_path, method: :delete, class: "nav-link") %></li>
           <% else %>

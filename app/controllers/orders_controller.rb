@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, except: [:create]
 
   def index
-
+    @orders = current_user.orders
   end
 
   def create
@@ -43,9 +43,8 @@ class OrdersController < ApplicationController
     end
   end
 
-
   def show
-
+    @order = Order.find(params[:id])
   end
 
   private
@@ -54,15 +53,15 @@ class OrdersController < ApplicationController
   end
 
   def backup_cart_items(order)
-    current_cart.cart_items.each do |cartitem|
+    current_cart.cart_items.each do |cart_item|
       @order_item = OrderItem.new
       @order_item.order_id = order.id
-      @order_item.product_id = cartitem.product.id
-      @order_item.price = cartitem.product.price
-      @order_item.quantity = cartitem.quantity
-      @order_item.name = cartitem.product.name
-      @order_item.image = cartitem.product.image
-      @order_item.description = cartitem.product.description
+      @order_item.product_id = cart_item.product.id
+      @order_item.price = cart_item.product.price
+      @order_item.quantity = cart_item.quantity
+      @order_item.name = cart_item.product.name
+      @order_item.image = cart_item.product.image
+      @order_item.description = cart_item.product.description
       @order_item.save
     end
   end
