@@ -51,10 +51,10 @@ class ApplicationController < ActionController::Base
       # 如果在 session 中能取出 "購物車 id"，表示 server 與 client 已經交換過資訊了
       # 因此可以在 carts table 裡找到那臺購物車的記錄
       @cart = Cart.find_by(id: session[:cart_id])
-    else
-      # 確保 @cart 存在，不存在的話就建立一個
-      @cart = Cart.create
     end
+
+    # 確保 @cart 存在，不存在的話就建立一個
+    @cart ||= Cart.create
 
     # 將 "購物車 id" 存入 session 中，傳到使用者的瀏覽器 cookie 中
     session[:cart_id] = @cart.id

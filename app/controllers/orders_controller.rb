@@ -33,6 +33,9 @@ class OrdersController < ApplicationController
         # 刪除 session 中的訂單收件人表單資料
         session.delete(:order_data)
 
+        # 寄信至使用者的註冊信箱
+        UserMailer.notify_order_create(@order).deliver_now!
+
         # 導向至 orders#show
         redirect_to order_path(@order.id), notice: "New order created!!!"
       else
