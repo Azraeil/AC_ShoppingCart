@@ -60,6 +60,9 @@ class OrdersController < ApplicationController
       @order_item.product_id = cartitem.product.id
       @order_item.price = cartitem.product.price
       @order_item.quantity = cartitem.quantity
+      @order_item.name = cartitem.product.name
+      @order_item.image = cartitem.product.image
+      @order_item.description = cartitem.product.description
       @order_item.save
     end
   end
