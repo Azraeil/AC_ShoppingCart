@@ -24,7 +24,7 @@
 
 # Ignore application configuration
 # config/secrets.yml
-config/application.rb
+# config/application.rb
 config/email.yml
 
 # Ignore application configuration
