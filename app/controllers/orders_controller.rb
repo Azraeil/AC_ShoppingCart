@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, except: [:create]
 
   def index
-
+    @orders = current_user.orders
   end
 
   def create
@@ -33,6 +33,9 @@ class OrdersController < ApplicationController
         # 刪除 session 中的訂單收件人表單資料
         session.delete(:order_data)
 
+        # 寄信至使用者的註冊信箱
+        UserMailer.notify_order_create(@order).deliver_now!
+
         # 導向至 orders#show
         redirect_to order_path(@order.id), notice: "New order created!!!"
       else
@@ -43,9 +46,19 @@ class OrdersController < ApplicationController
     end
   end
 
-
   def show
+    @order = Order.find(params[:id])
+  end
 
+  def update
+    @order = Order.find(params[:id])
+
+    if @order.shipping_status == "not_shipped"
+      @order.shipping_status = "cancelled"
+      @order.save
+
+      redirect_to order_path(@order.id), notice: "Order ##{@order.sn} cancelled !"
+    end
   end
 
   private
@@ -54,12 +67,15 @@ class OrdersController < ApplicationController
   end
 
   def backup_cart_items(order)
-    current_cart.cart_items.each do |cartitem|
+    current_cart.cart_items.each do |cart_item|
       @order_item = OrderItem.new
       @order_item.order_id = order.id
-      @order_item.product_id = cartitem.product.id
-      @order_item.price = cartitem.product.price
-      @order_item.quantity = cartitem.quantity
+      @order_item.product_id = cart_item.product.id
+      @order_item.price = cart_item.product.price
+      @order_item.quantity = cart_item.quantity
+      @order_item.name = cart_item.product.name
+      @order_item.image = cart_item.product.image
+      @order_item.description = cart_item.product.description
       @order_item.save
     end
   end
