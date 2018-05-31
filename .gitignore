@@ -23,6 +23,9 @@
 .byebug_history
 
 # Ignore application configuration
+# config/secrets.yml
 config/application.rb
-config/secrets.yml
 config/email.yml
+
+# Ignore application configuration
+/config/application.yml

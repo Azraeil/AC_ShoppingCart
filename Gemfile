@@ -84,3 +84,6 @@ gem 'ransack'
 
 # for icons
 gem "font-awesome-rails"
+
+# for configuration using ENV and a single YAML file
+gem 'figaro'
