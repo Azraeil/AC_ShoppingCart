@@ -1,0 +1,35 @@
+<table class="table table-striped table-hover mt-2 text-center">
+  <thead>
+    <tr>
+      <th scope="col-md-auto">Product</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Subtotal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.order_items.each do |order_item| %>
+      <tr>
+        <th class="align-middle"><%= order_item.name %></th>
+        <td class="align-middle">$<%= order_item.price %></td>
+        <td class="align-middle"><%= order_item.quantity %></td>
+        <td class="align-middle">$<%= order_item.price * order_item.quantity %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <th colspan="3" class="text-right">Total</th>
+      <th>$<%= @order.amount %></th>
+    </tr>
+  </tbody>
+</table>
+
+<div class="card">
+  <div class="card-header">
+    Shipping Information
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Name: <%= @order.name %></li>
+    <li class="list-group-item">Phone: <%= @order.phone %></li>
+    <li class="list-group-item">Address: <%= @order.address %></li>
+  </ul>
+</div>

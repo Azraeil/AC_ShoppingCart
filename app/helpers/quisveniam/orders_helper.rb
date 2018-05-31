@@ -1,0 +1,2 @@
+module Quisveniam::OrdersHelper
+end
