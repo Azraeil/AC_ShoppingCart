@@ -60,6 +60,9 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "AC_ShoppingCart_#{Rails.env}"
+  config.action_mailer.default_url_options = { host:"https://shopping-cart-practice.herokuapp.com/" }
+  config.action_mailer.smtp_settings = config_for(:email).symbolize_keys
+
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
