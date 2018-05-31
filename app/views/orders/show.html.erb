@@ -5,11 +5,11 @@
       #<%= @order.sn %> Order Status
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Payment Status: <%= @order.payment_status %></li>
+      <li class="list-group-item">Payment Status: <%= @order.payment_status.split('_').join(' ').titleize %></li>
       <li class="list-group-item">
         <div class="row">
           <div class="col">
-            Shipping Status: <%= @order.shipping_status %>
+            Shipping Status: <%= @order.shipping_status.split('_').join(' ').titleize %>
           </div>
           <div class="col text-right">
             <% if @order.shipping_status == "not_shipped" %>
