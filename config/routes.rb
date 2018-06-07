@@ -13,7 +13,11 @@ Rails.application.routes.draw do
 
   namespace :quisveniam do
     resources :products, except: [:show]
-    resources :orders, only: [:index, :edit, :update]
+    resources :orders, only: [:index, :edit, :update] do
+      member do
+        post :checkout_spgateway
+      end
+    end
     root "products#index"
   end
 
@@ -27,7 +31,12 @@ Rails.application.routes.draw do
   end
 
   # Phase 3：成立訂單 orders
-  resources :orders, only: [:create, :index, :show, :update]
+  resources :orders, only: [:create, :index, :show, :update] do
+    member do
+      post :checkout_spgateway
+    end
+    root "products#index"
+  end
 
   # Phase 4：線上支付 payments
 end
