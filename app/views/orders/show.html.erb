@@ -5,7 +5,19 @@
       #<%= @order.sn %> Order Status
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Payment Status: <%= @order.payment_status.split('_').join(' ').titleize %></li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col">
+            Payment Status: <%= @order.payment_status.split('_').join(' ').titleize %>
+          </div>
+          <div class="col text-right">
+            <% if @order.payment_status == "not_paid" %>
+              <%= link_to "Pay Now", checkout_spgateway_order_path(@order.id), method: :post, class: "btn btn-primary btn-sm" %>
+            <% end %>
+          </div>
+        </div>
+      </li>
+
       <li class="list-group-item">
         <div class="row">
           <div class="col">
